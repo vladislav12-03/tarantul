@@ -1,0 +1,544 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #181c24;
+    color: #f1f1f1;
+}
+
+.sidebar {
+    position: fixed;
+    left: 32px;
+    top: 32px;
+    width: 220px;
+    height: calc(100vh - 64px);
+    background: #23283a;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+    z-index: 10;
+    border-radius: 22px;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.sidebar-header {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 32px 0 16px 32px;
+    letter-spacing: 1px;
+    color: #fff;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    display: flex;
+    align-items: center;
+    padding: 14px 32px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    color: #c7cbe3;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.08);
+    background: transparent;
+    position: relative;
+}
+
+.sidebar-menu li.active, .sidebar-menu li:hover {
+    background: linear-gradient(90deg, #2d334a 80%, #23283a 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.18);
+}
+
+/* Специальные стили для кнопки админ-панели */
+#admin-panel-btn {
+    background: linear-gradient(90deg, #ff4d4f 80%, #e04344 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px 0 rgba(255,77,79,0.18) !important;
+}
+
+#admin-panel-btn:hover {
+    background: linear-gradient(90deg, #e04344 80%, #ff4d4f 100%) !important;
+    box-shadow: 0 4px 16px 0 rgba(255,77,79,0.25) !important;
+}
+
+/* Специальные стили для кнопки выхода */
+#logout-btn {
+    background: none;
+    color: #c7cbe3;
+    border: none;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    padding: 10px 0 0 0;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: #fff;
+}
+
+.sidebar-menu .icon {
+    margin-right: 12px;
+    font-size: 1.2em;
+}
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px 16px;
+}
+
+.admin-btn {
+    background: linear-gradient(90deg, #ff4d4f 80%, #e04344 100%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(255,77,79,0.18);
+}
+
+.admin-btn:hover {
+    background: linear-gradient(90deg, #e04344 80%, #ff4d4f 100%);
+    box-shadow: 0 4px 16px 0 rgba(255,77,79,0.25);
+}
+
+.main-content {
+    margin-left: 284px;
+    padding: 48px 48px 0 48px;
+    min-height: 100vh;
+    background: #181c24;
+    transition: background 0.2s;
+}
+
+.content-card {
+    background: #23283a;
+    color: #f1f1f1;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    padding: 40px 36px;
+    margin-bottom: 32px;
+    min-height: 100px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.clock-blocks {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+.clock-card {
+    background: rgba(36, 38, 56, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(255,184,77,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+    border: 1.5px solid rgba(255,184,77,0.18);
+    padding: 24px 44px 20px 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+    min-height: 60px;
+    justify-content: center;
+}
+#clock-time {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffb84d;
+    margin-bottom: 0;
+    text-shadow: 0 2px 12px rgba(255,184,77,0.10);
+    transition: color 0.2s;
+}
+#clock-date-main {
+    font-size: 1.15rem;
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+#clock-date-alt {
+    font-size: 1rem;
+    color: #c7cbe3;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.clock-main {
+    background: rgba(36, 38, 56, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(255,184,77,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+    border: 1.5px solid rgba(255,184,77,0.18);
+    padding: 32px 56px 28px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 270px;
+    margin-bottom: 36px;
+}
+#clock-time {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffb84d;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 12px rgba(255,184,77,0.10);
+    transition: color 0.2s;
+}
+#clock-date-main {
+    font-size: 1.15rem;
+    color: #fff;
+    margin-bottom: 2px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+#clock-date-alt {
+    font-size: 1rem;
+    color: #c7cbe3;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        left: 8px;
+        top: 8px;
+        width: 56px;
+        border-radius: 16px;
+        height: calc(100vh - 16px);
+    }
+    .sidebar-header, .sidebar-menu li span:not(.icon), .admin-btn, .logout-btn {
+        display: none;
+    }
+    .main-content {
+        margin-left: 72px;
+        padding: 16px 8px 0 8px;
+    }
+}
+
+@media (max-width: 700px) {
+    .clock-blocks {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .clock-card {
+        min-width: unset;
+        width: 100%;
+        padding: 18px 10px 14px 10px;
+    }
+}
+
+.dashboard-block {
+    background: rgba(36, 38, 56, 0.95);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(255,184,77,0.10), 0 1.5px 8px 0 rgba(0,0,0,0.10);
+    border: 1.5px solid rgba(255,184,77,0.10);
+    padding: 32px 56px 28px 56px;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    min-width: 270px;
+    min-height: 120px;
+    margin-right: 32px;
+    margin-bottom: 36px;
+    vertical-align: top;
+}
+.dashboard-block:last-child {
+    margin-right: 0;
+}
+.clock-main {
+    max-width: 350px;
+}
+.news-block {
+    align-items: flex-start;
+    max-width: 500px;
+    width: 100%;
+}
+.news-block h3 {
+    color: #ffb84d;
+    margin: 0 0 18px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.news-list {
+    width: 100%;
+    min-height: 40px;
+}
+@media (max-width: 900px) {
+    .dashboard-block {
+        display: block;
+        min-width: unset;
+        width: 100%;
+        padding: 18px 10px 14px 10px;
+        margin-right: 0;
+    }
+    .clock-main, .news-block {
+        max-width: unset;
+    }
+}
+
+.welcome-block {
+    background: rgba(36, 38, 56, 0.85);
+    border: 1.5px solid rgba(255,184,77,0.07);
+    box-shadow: 0 2px 12px 0 rgba(255,184,77,0.06);
+    padding: 28px 36px 20px 36px;
+    margin-bottom: 0;
+}
+.welcome-block h3 {
+    color: #ffb84d;
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.welcome-block p {
+    color: #fff;
+    margin: 0;
+    font-size: 1.08rem;
+    font-weight: 400;
+}
+
+/* Модальное окно для админ-панели */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20, 22, 30, 0.85);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-window {
+    background: #23283a;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
+    padding: 36px 32px 28px 32px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    position: relative;
+}
+.modal-window h2 {
+    margin: 0 0 18px 0;
+    color: #ffb84d;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+#admin-password {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #44495e;
+    background: #181c24;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    width: 220px;
+    outline: none;
+    transition: border 0.2s;
+}
+#admin-password:focus {
+    border: 1.5px solid #ffb84d;
+}
+.modal-error {
+    color: #ff4d4f;
+    font-size: 0.98rem;
+    min-height: 18px;
+    margin-bottom: 10px;
+}
+.modal-actions {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+}
+#admin-login-btn, #admin-cancel-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #ffb84d;
+    color: #23283a;
+    transition: background 0.2s, color 0.2s;
+}
+#admin-login-btn:hover {
+    background: #ffd580;
+}
+#admin-cancel-btn {
+    background: #23283a;
+    color: #fff;
+    border: 1.5px solid #44495e;
+}
+#admin-cancel-btn:hover {
+    background: #181c24;
+}
+
+/* Окно админ-панели на всю страницу */
+.admin-panel-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #181c24;
+    z-index: 1100;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0;
+}
+.admin-panel-window {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    min-width: 0;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    justify-content: flex-start;
+}
+.admin-panel-window h2 {
+    color: #ffb84d;
+    margin: 48px 0 18px 0;
+    font-size: 2.2rem;
+    font-weight: 800;
+}
+#admin-logout-btn {
+    margin-top: 32px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.15rem;
+    font-weight: 600;
+    background: #ff4d4f;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+#admin-logout-btn:hover {
+    background: #e04344;
+}
+
+#add-news-btn {
+    margin-top: 18px;
+    padding: 10px 28px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.08rem;
+    font-weight: 600;
+    background: #ffb84d;
+    color: #23283a;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(255,184,77,0.10);
+    outline: none;
+    margin-bottom: 0;
+}
+#add-news-btn:hover {
+    background: #ffd580;
+    color: #181c24;
+}
+.mini-news-modal {
+    min-width: 260px;
+    max-width: 340px;
+    padding: 28px 18px 20px 18px;
+}
+#news-text {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #44495e;
+    background: #181c24;
+    color: #fff;
+    font-size: 1.1rem;
+    min-height: 60px;
+    margin-bottom: 10px;
+    width: 100%;
+    outline: none;
+    transition: border 0.2s;
+    resize: vertical;
+}
+#news-text:focus {
+    border: 1.5px solid #ffb84d;
+}
+
+
+
+.login-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #181c24;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+.login-window {
+    background: #23283a;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.35);
+    padding: 44px 36px 32px 36px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+.login-window h2 {
+    margin: 0 0 18px 0;
+    color: #ffb84d;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+#login-username, #login-password {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #44495e;
+    background: #181c24;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    width: 220px;
+    outline: none;
+    transition: border 0.2s;
+}
+#login-username:focus, #login-password:focus {
+    border: 1.5px solid #ffb84d;
+}
+
+#login-btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1.08rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, #ff4d4f 80%, #e04344 100%);
+    color: #fff;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px 0 rgba(255,77,79,0.18);
+}
+#login-btn:hover {
+    background: linear-gradient(90deg, #e04344 80%, #ff4d4f 100%);
+    box-shadow: 0 4px 16px 0 rgba(255,77,79,0.25);
+} 
